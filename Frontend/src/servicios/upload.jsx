@@ -1,0 +1,34 @@
+const produccion = import.meta.env.MODE == 'production'
+
+const url = produccion? '/api/upload/' : 'http://localhost:8080/api/upload/'
+
+export const enviarArchivoImagen = (formdata, cbProgress, cbUrlFoto) => {
+    let porcentaje = 0
+
+    const xhr = new XMLHttpRequest()
+    xhr.open('post', url)
+
+    xhr.addEventListener('load', () => {
+        if(xhr.status == 200) {
+            const rta = JSON.parse(xhr.response)
+
+            const { urlFoto:urlFotoAux } = rta
+            const urlFoto = (produccion? '' : 'http://localhost:8080') + urlFotoAux
+
+            if(typeof cbUrlFoto == 'function') cbUrlFoto(urlFoto)
+        }
+        else {
+            console.error('Error al enviar el archivo', xhr.status)
+        }
+    })
+    xhr.addEventListener('error', e => {
+        console.error('Error en la comunicación enviar el archivo', e)
+    })
+    xhr.upload.addEventListener('progress', e => {
+        if(e.lengthComputable) {
+            porcentaje = parseInt((e.loaded * 100) / e.total)
+            if(typeof cbProgress == 'function') cbProgress(porcentaje)
+        }
+    })
+    xhr.send(formdata)
+}

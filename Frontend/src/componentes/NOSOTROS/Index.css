@@ -1,0 +1,140 @@
+.nosotros {
+    padding: 20px;
+    background-color: var(--bgc);
+    height: auto;
+}
+.todo.contenido {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    align-items: center;
+    gap: 2rem;
+
+    background: var(--fondo);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 3rem 3rem rgba(0, 0, 0, .08);
+    margin: 2rem auto;
+}
+.contenido-texto p {
+    line-height: 1.6;
+    margin: .75rem 0;
+    color: #333;
+}
+.todo.listado {
+    margin: 1rem 0 1.25rem 1.1rem;
+    padding: 0;
+    display: grid;
+    gap: .4rem;
+}
+
+.todo.listado li {
+    list-style: disc;
+    color: #333;
+    display: block;
+}
+
+.todo.extra {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+.todo.extra span {
+    background: var(--fondo);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    padding: .45rem .7rem;
+    border-radius: 999px;
+    font-size: .9rem;
+}
+
+.contenedor-media {
+    display: grid;
+    place-items: center;
+    min-width: 0;
+}
+
+.contenedor-media img {
+    width: 100%;
+    max-width: 820px;
+    height: auto;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .45);
+    object-fit: cover;
+}
+
+.todo.listado li {
+    list-style: disc;
+    color: #333;
+}
+.todo.extra {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+
+.todo.extra span {
+    background: var(--fondo);
+    border: 1px solid rgba(0, 0, 0, .06);
+    padding: .45rem .7rem;
+    border-radius: 999px;
+    font-size: .9rem;
+}
+
+h1 {
+    margin: 20px;
+    text-shadow: 3px 1px 10px rgba(0, 0, 0, 0.61);
+    font-size: 3rem;
+    margin: 3rem;
+    text-align: center;
+}
+.contenedor-titulo {
+    margin: 3rem 0 1rem;
+    text-align: center;
+    font-size: clamp(2rem, 3vw + 1rem, 3rem);
+    text-shadow: 3px 1px 10px rgba(0, 0, 0, .3);
+}
+
+strong {
+    color: var(--primario);
+}
+
+/*-------------------RESPONSIVO---------------------*/
+
+@media (max-width: 900px) {
+    main {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        padding: 20px;
+        height: auto;
+
+    }
+
+    .todo.contenido {
+       grid-template-columns: 1fr; 
+    gap: 1.25rem;
+    padding: 20px;
+    }
+
+    h1 {
+        order: -1;
+    }
+
+    .contenedor-media {
+        order: -1;
+        margin: auto;
+    }
+
+    .contenedor-media img {
+        display: block;
+        max-width: 80%;
+        margin: auto;
+    }
+
+    div .contenedor-media {
+        width: 2px;
+    }
+
+    h3 {
+        margin-top: 2rem;
+    }
+
+}

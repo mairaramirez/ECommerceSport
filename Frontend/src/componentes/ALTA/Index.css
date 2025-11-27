@@ -1,0 +1,237 @@
+.alta {
+    height: auto;
+    padding: 20px;
+    background-color: var(--bgc);
+}
+
+.alta h1,
+.alta h2 {
+    margin: 20px;
+    text-shadow: 3px 1px 10px rgba(0, 0, 0, 0.61);
+    font-size: 3rem;
+    margin: 3rem;
+    text-align: center;
+}
+
+/*  ------- Maquetado del formulario ------ */
+.alta .alta-form {
+    background-color: var(--oscuro);
+    width: min(80%, 960px);
+    margin: 20px auto;
+    padding: 30px;
+    color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, .25);
+}
+
+.alta .input-group {
+    padding: 3px;
+    text-align: center;
+}
+
+.alta label {
+    color: #ffffff;
+    text-transform: capitalize;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.alta label[for="envio"] {
+    display: inline-block;
+    margin: 10px 0;
+}
+
+/* Inputs */
+.alta input,
+.alta textarea,
+.alta select {
+    width: min(70%, 560px);
+    height: 40px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    background-color: var(--bgc);
+    color: #0b1020;
+    padding: 6px 10px;
+    box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, .1) inset;
+    transition: box-shadow .2s ease, border-color .2s ease, transform .06s ease;
+}
+
+.alta textarea {
+    height: auto;
+    min-height: 100px;
+    resize: vertical;
+}
+
+.alta input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    box-shadow: none;
+}
+
+.alta .requerido:invalid {
+    border: 2px solid var(--oscuro);
+    background: #fff5f5;
+}
+
+.alta .requerido:valid {
+    border: 2px solid #badc58;
+    background: #f0fff4;
+}
+
+/* Focus accesible */
+.alta input:focus-visible,
+.alta textarea:focus-visible,
+.alta select:focus-visible,
+.alta form button:focus-visible,
+.alta table button:focus-visible {
+    outline: 3px solid #ff0a5f;
+    outline-offset: 2px;
+}
+
+/* Botones del form */
+.alta form button {
+    display: block;
+    margin: 15px auto;
+    height: 44px;
+    width: clamp(220px, 40%, 420px);
+    background-color: #6ab04c;
+    color: #130f40;
+    font-size: 18px;
+    font-weight: 600;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform .06s ease, filter .2s ease, background .2s ease;
+}
+
+.alta form button:hover {
+    filter: brightness(1.05);
+}
+
+.alta form button:active {
+    transform: translateY(1px);
+}
+
+.alta form button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+/*  ------- Maquetado de la tabla ------ */
+.alta .table-responsive {
+    overflow: auto;
+}
+
+.alta table {
+    border-collapse: collapse;
+    margin: 10px auto;
+    min-width: 680px;
+    width: 100%;
+}
+
+.alta th,
+.alta td {
+    border: 1px solid black;
+    width: 100px;
+    height: 40px;
+    padding: 10px;
+}
+
+.alta th {
+    text-transform: uppercase;
+    background-color: #111;
+    color: var(--bgc);
+    font-size: 18px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.alta td {
+    font-size: 16px;
+    background: var(--bgc);
+}
+
+/* Botones de tabla */
+.alta table .borrar-editar {
+    width: 90%;
+    height: 40px;
+    border-radius: 6px;
+    font-size: 16px;
+    margin: 4px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.alta table button.btnBorrar {
+    background-color: crimson;
+    color: #fff;
+}
+
+.alta table button.btnEditar {
+    background-color: gold;
+    color: #222;
+}
+
+.alta table button.btnCancelar {
+    background-color: #222;
+    color: gold;
+}
+
+.alta .btnActualizar {
+    background-color: #ff0a5f;
+    color: var(--bgc);
+    border: 1px solid var(--bgc);
+}
+
+.alta .btnAgregar {
+    background-color: #6ab04c;
+    color: #130f40;
+}
+
+.alta table button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+
+/* Feedback de error */
+.alta .error-detail {
+    margin: 10px 0;
+    color: #ffc0cb;
+}
+
+/* -----------------Responsive------------------- */
+
+@media (max-width: 900px) {
+    .alta .alta-form {
+        width: 92%;
+        padding: 20px;
+    }
+
+    .alta input,
+    .alta textarea,
+    .alta select {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .alta table {
+        min-width: 480px;
+    }
+
+    .alta th {
+        font-size: 16px;
+    }
+
+    .alta td {
+        font-size: 14px;
+    }
+
+    .alta form button {
+        width: 90%;
+    }
+}

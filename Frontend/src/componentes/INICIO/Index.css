@@ -1,0 +1,196 @@
+.inicio {
+    height: auto;
+    background-color: var(--bgc);
+    text-align: center;
+    padding: 25px;
+}
+
+.promo-banner {
+    max-width: 1200px;
+    margin: 18px auto 28px;
+    padding: 36px 42px;
+    background: linear-gradient(90deg, #ff0a5f 0%, #ff3b80 50%, #ff0a5f 100%);
+    border-radius: 22px;
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    align-items: center;
+    gap: 20px;
+    box-shadow:
+        0 16px 40px rgba(0, 0, 0, .25),
+        inset 0 -4px 0 rgba(0, 0, 0, .06);
+}
+
+.promo-texto h2 {
+    font-weight: 800;
+    margin: 0 0 .75rem;
+    font-size: 3rem;
+    line-height: 1.1;
+    color: var(--bgc);
+    text-shadow: 10px 5px 5px rgb(0, 0, 0);
+    letter-spacing: .4px;
+}
+
+.promo-texto p {
+    margin: 0 0 1.2rem;
+    font-size: 1.25rem;
+    color: var(--bgc);
+    font-weight: 600;
+    letter-spacing: .02em;
+    text-shadow: 5px 2px 5px rgb(0, 0, 0);
+}
+
+.boton-cta {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 12px;
+    background: var(--acento, #C6E700);
+    color: #111;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .25);
+    transition: filter .2s ease, transform .06s ease;
+}
+
+.boton-cta:hover {
+    filter: brightness(1.05);
+    background: var(--primario);
+    color: var(--oscuro);
+    border: 2px solid greenyellow;
+    font-size: large;
+    transform: translateY(-10px);
+    box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.61);
+}
+
+.boton-cta:active {
+    transform: translateY(1px);
+}
+
+.promo-imagen {
+    flex: 0 0 auto;
+    display: grid;
+    place-items: end;
+    justify-items: end;
+}
+
+.imgBanner {
+    width: min(420px, 100%);
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 22px 30px rgba(0, 0, 0, .35));
+}
+
+/*-----------------CARDS---------------*/
+section {
+    width: 250px;
+    padding: 15px;
+    background-color: #FFFFFF;
+    color: #1C1C1C;
+    margin: 15px;
+    border-radius: 15px;
+    box-shadow: 0 2rem 1rem rgba(0, 0, 0, .12);
+    transition: transform 0.3s ease, box-shadow 30s ease;
+}
+section:hover {
+    transform: translateY(-20px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+.inicio section img {
+    width: 100px;
+    margin-bottom: 15px;
+}
+
+.inicio .section-cards-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.inicio section h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+
+.inicio .section-cards-header h1 {
+    color: var(--bgc);
+    margin-bottom: 40px;
+    text-shadow: 3px 1px 10px rgb(0, 0, 0);
+    font-size: clamp(20px, 2,5vw, 26px);;
+    margin: 3rem;
+    padding: 10px;
+    background-color: var(--oscuro);
+}
+
+.inicio section p {
+    margin-bottom: 10px;
+}
+
+.inicio section button[id^="btnComprar-"] {
+    background-color: var(--acento);
+    color: var(--oscuro);
+    margin: 30px auto 5px;
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.inicio section button[id^="btnComprar-"]:hover {
+    background-color: var(--primario);
+    color: var(--oscuro);
+    margin: 30px auto 5px;
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    transform: scale(1-5, 1.5);
+
+}
+
+
+/*-------------------RESPONSIVO---------------------*/
+
+@media (max-width: 1200px) {
+    div h1 {
+        margin: 0;
+    }
+
+    .section-cards-header h1 {
+        color: #1C1C1C;
+        margin-bottom: 0;
+    }
+
+    .promo-banner {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        min-height: auto;
+        margin: 3rem auto;
+    }
+
+    .promo-texto {
+        flex-basis: 2rem;
+
+    }
+
+    .promo-texto h2 {
+        font-size: 2rem;
+    }
+
+    .promo-texto p {
+        font-size: 1rem;
+    }
+
+    .promo-imagen img {
+        display: none;
+    }
+
+    #stock,
+    #categoria,
+    #desLarga,
+    #edades {
+        display: none;
+    }
+}
