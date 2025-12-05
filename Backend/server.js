@@ -20,7 +20,8 @@ class Server {
         const app = express()
         app.use(cors())                     // middleware para permitir peticiones desde orígenes cruzados (Ej. ambiente de desarrollo del frontend)
         app.use(express.static('public'))   // middleware de recursos estáticos de express
-        app.use('/uploads', express.static('public/uploads')) 
+        app.use('/assets', express.static('/public/assets'))
+        app.use('/uploads', express.static('/public/uploads')) 
         app.use(express.json())
 
         // ------------ Rutas / endpoints API RESTful -------------
