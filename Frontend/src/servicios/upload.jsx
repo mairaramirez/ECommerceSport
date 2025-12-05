@@ -7,14 +7,13 @@ export const enviarArchivoImagen = (formdata, cbProgress, cbUrlFoto) => {
 
     const xhr = new XMLHttpRequest()
     xhr.open('post', url)
-
     xhr.addEventListener('load', () => {
         if(xhr.status == 200) {
             const rta = JSON.parse(xhr.response)
+            console.log(rta)
 
             const { urlFoto:urlFotoAux } = rta
             const urlFoto = (produccion? '' : 'http://localhost:8080') + urlFotoAux
-
             if(typeof cbUrlFoto == 'function') cbUrlFoto(urlFoto)
         }
         else {
@@ -30,5 +29,6 @@ export const enviarArchivoImagen = (formdata, cbProgress, cbUrlFoto) => {
             if(typeof cbProgress == 'function') cbProgress(porcentaje)
         }
     })
+
     xhr.send(formdata)
 }

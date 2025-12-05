@@ -1,24 +1,35 @@
 [
 	{
-		"nombre": "Memoria",
-		"precio": 3456,
-		"stock": 77,
-		"marca": "Kingston",
-		"categoria": "PC",
-		"detalles": "DDR-5",
-		"foto": "https://i.blogs.es/6135c0/ram/450_1000.png",
-		"envio": false,
-		"id": "2"
-	},
-	{
-		"nombre": "Mouse",
-		"precio": 543,
-		"stock": 11,
-		"marca": "Genius",
-		"categoria": "PC",
-		"detalles": "Color negro",
-		"foto": "https://www.venex.com.ar/products_images/1601917920_unnamed.jpg",
-		"envio": false,
-		"id": "3"
-	}
+                "nombre": "Mancuerna Hexagonal",
+                "precio": 15800,
+                "stock": 25,
+                "marca": "Everlast",
+                "categoria": "Pesas",
+                "detalles": "Par de mancuernas hexagonales 10kg recubiertas en goma, ideales para entrenamiento funcional.",
+                "foto": "https://www.deportesonce.com.ar/wp-content/uploads/FF022-10BK_2Deportes-Once-Follow-Fit.jpg",
+                "envio": true,
+                "id": "1"
+            }, 
+           {
+                "nombre": "Guantes de Boxeo",
+                "precio": 23500,
+                "stock": 14,
+                "marca": "Everlast",
+                "categoria": "Boxeo",
+                "detalles": "Guantes profesionales 12 oz con cierre de velcro, aptos para sparring y entrenamiento.",
+                "foto": "https://http2.mlstatic.com/D_NQ_NP_693380-MLA71369221679_082023-O.webp",
+                "envio": false,
+                "id": "2"
+            }, 
+            {
+                "nombre": "Pelota de Futbol",
+                "precio": 12700,
+                "stock": 40,
+                "marca": "Adidas",
+                "categoria": "Fútbol",
+                "detalles": "Pelota tamaño oficial N°5, cosida a máquina, ideal para entrenamiento y recreación.",
+                "foto": "https://production.cdn.vaypol.com/variants/2d1geyp5nm4nsb8qw3rl6i4ao1hd/e82c8d6171dd25bb538f2e7263b5bc7dfc6a79352d85923074be76df53fbc6f4",
+                "envio": true,
+                "id": "3"
+            }   
 ]

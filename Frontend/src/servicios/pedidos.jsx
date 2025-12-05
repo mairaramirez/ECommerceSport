@@ -5,7 +5,7 @@ const produccion = import.meta.env.MODE == 'production'
 //const url = 'http://localhost:8080/api/pedidos/'      // en desarrollo
 //const url = '/api/pedidos/'                             // en producción
 
-const url = produccion? '/api/pedidos/' : 'https://localhost:8080/api/pedidos/' 
+const url = produccion? '/api/pedidos/' : 'http://localhost:8080/api/pedidos/' 
 
 const enviar = async pedido => (await axios.post(url, pedido)).data
 

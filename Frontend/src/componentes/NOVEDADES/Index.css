@@ -160,6 +160,7 @@ article{
 @media (max-width: 800px) {
   .novedades-novedades {
     grid-template-columns: 1fr;
+    padding: 0;
   }
 
   .novedades-info {

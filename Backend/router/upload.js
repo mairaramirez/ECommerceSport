@@ -3,20 +3,16 @@ import multer from 'multer'
 
 import Controlador from '../controlador/upload.js'
 
-
-
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, './public/upload')
+        cb(null, './public/uploads')
     },
     filename: (req, file, cb) => {
         cb(null, `${Date.now()}-${file.originalname}`)
     }
 })
 
-const upload = multer({storage: storage})
-
-
+const upload = multer({ storage: storage })
 class Router {
     #controlador = null
 

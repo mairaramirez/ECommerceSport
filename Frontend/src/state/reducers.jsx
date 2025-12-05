@@ -1,4 +1,12 @@
+import { SET_CANTIDAD } from "./types"
+
 export const carritoReducer = (state, action) => {
-    console.log('-> Reducer', state, action)
-    return state
+
+    switch (action.type) {
+        case SET_CANTIDAD:
+            return { ...state, cantidad: action.payload }
+
+        default:
+            return state
+    }
 }

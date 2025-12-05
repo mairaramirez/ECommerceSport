@@ -1,15 +1,16 @@
 .ObtenerFoto #drop {
-    border: 3px dashed blue;
+    border: 1px dashed rgb(255, 255, 255);
     width: 400px;
     height: 200px;
-    background-color: lightyellow;    
+    background-color: #ffc0cb;   
     margin: 10px auto;
     font-size: 24px;
     padding: 10px;
+    border-radius: 20px;
 }
 
 .ObtenerFoto label{
-    color: red;
+    color: #f0fff4;
     cursor: pointer;
     display: block;
     width: 100%;
@@ -28,4 +29,18 @@
     height: 150px;
     display: block;
     margin: auto;
+}
+@media (max-width: 900px) {
+    .ObtenerFoto #drop {
+    width: 100px;
+    height: 60px;
+    margin: 10px auto;
+    font-size: 14px;
+    padding: 10px;
+}
+}
+
+
+@media (max-width: 600px) {
+    
 }

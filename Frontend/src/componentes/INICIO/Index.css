@@ -116,7 +116,6 @@ section:hover {
     margin-bottom: 40px;
     text-shadow: 3px 1px 10px rgb(0, 0, 0);
     font-size: clamp(20px, 2,5vw, 26px);;
-    margin: 3rem;
     padding: 10px;
     background-color: var(--oscuro);
 }
@@ -155,6 +154,7 @@ section:hover {
 @media (max-width: 1200px) {
     div h1 {
         margin: 0;
+        font-size: 1.5rem;
     }
 
     .section-cards-header h1 {
@@ -176,19 +176,17 @@ section:hover {
     }
 
     .promo-texto h2 {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     .promo-texto p {
-        font-size: 1rem;
+        font-size: 0.5rem;
     }
 
     .promo-imagen img {
         display: none;
     }
 
-    #stock,
-    #categoria,
     #desLarga,
     #edades {
         display: none;

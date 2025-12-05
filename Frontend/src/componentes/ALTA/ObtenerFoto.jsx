@@ -1,16 +1,24 @@
 import './ObtenerFoto.css'
 import { enviarArchivoImagen } from '../../servicios/upload'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-export function ObtenerFoto(props) {
-    const { escribirCampoFoto } = props
+export function ObtenerFoto({ escribirCampoFoto, resetFoto }) {
+
 
     const [porcentaje, setPorcentaje] = useState(0)
     const [urlFoto, setUrlFoto] = useState('')
 
+    useEffect(() => {
+        if (resetFoto) {
+            setPorcentaje(0)
+            setUrlFoto('')
+            escribirCampoFoto('')  
+        }
+    }, [resetFoto])
+
     const enviarFoto = archivo => {
 
-        if(archivo.type.includes('image/')) {
+        if (archivo.type.includes('image/')) {
             const formdata = new FormData()
             formdata.append('archivo', archivo)
             enviarArchivoImagen(formdata, porcentaje => {
@@ -20,7 +28,7 @@ export function ObtenerFoto(props) {
                 if(typeof escribirCampoFoto == 'function') escribirCampoFoto(urlFoto)
             })
         }
-        else console.error('El archivo elegido no corresponde a una imágen')        
+        else console.error('El archivo elegido no corresponde a una imágen')
     }
 
     const dragEnter = e => {
@@ -46,20 +54,20 @@ export function ObtenerFoto(props) {
         enviarFoto(archivo)
     }
 
-   return (
+    return (
         <div className="ObtenerFoto">
             <input type="file" id="archivo" onChange={change} />
-            <div 
+            <div
                 id="drop"
                 onDragEnter={dragEnter}
                 onDragLeave={dragLeave}
                 onDragOver={dragOver}
                 onDrop={drop}
             >
-                { porcentaje > 0 && <><progress max="100" value={porcentaje}></progress> <span>{porcentaje}%</span></> }
+                {porcentaje > 0 && <><progress max="100" value={porcentaje}></progress> <span>{porcentaje}%</span></>}
                 <label htmlFor="archivo">
-                    { porcentaje > 0
-                        ? ( urlFoto? <img src={urlFoto} alt="" /> : <></> )
+                    {porcentaje > 0
+                        ? ( urlFoto? <img src={urlFoto} alt="foto del producto" /> : <></>)
                         : 'D&D or Click'
                     }
                 </label>

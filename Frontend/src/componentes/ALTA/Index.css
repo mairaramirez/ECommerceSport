@@ -196,7 +196,6 @@
 }
 
 
-/* Feedback de error */
 .alta .error-detail {
     margin: 10px 0;
     color: #ffc0cb;
@@ -213,7 +212,13 @@
     .alta input,
     .alta textarea,
     .alta select {
-        width: 100%;
+        width: 80%;
+        margin: auto;
+    }
+
+    .alta h1,
+    .alta h2 {
+        font-size: 20px;
     }
 }
 

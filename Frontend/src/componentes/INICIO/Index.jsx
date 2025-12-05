@@ -4,29 +4,33 @@ import { useEffect, useState } from 'react'
 
 import servicioProductos from '../../servicios/productos'
 import { useStateLocalStorage } from '../../Hooks/useStateLocalStorage'
+import { actionSetCantidad } from '../../state/actions'
+import { useDispatch } from 'react-redux'
 
 
 export function Index() {
     const [productos, setProductos] = useState([])
     const [carrito, setCarrito] = useStateLocalStorage('carrito', [])
 
+    const dispatch = useDispatch()
+
     useEffect(() => {
-        console.error('cambio el carrito')
+
+        const cantidad = carrito.length
+         dispatch(actionSetCantidad(cantidad))
     }, [carrito])
 
-       useEffect(() => {
-        console.warn('Componente inicio (montado)')
+    useEffect(() => {
 
-        ;(async () => {
-            // obtiendo los productos del recurso remoto
-            const productos = await servicioProductos.getAll()
-            
-            // Guardo los productos obtenidos en el recurso local
-            setProductos(productos)
-        })()
+            ; (async () => {
+                // obtiendo los productos del recurso remoto
+                const productos = await servicioProductos.getAll()
+
+                // Guardo los productos obtenidos en el recurso local
+                setProductos(productos)
+            })()
 
         return () => {
-            console.warn('Componente inicio (desmontado)')
         }
     }, [])
 

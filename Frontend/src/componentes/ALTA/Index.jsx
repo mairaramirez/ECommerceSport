@@ -18,23 +18,18 @@ export function Index() {
         envio: false,
     }
 
-    // recurso productos local
     const [productos, setProductos] = useState([])
     const [producto, setProducto] = useState(prodClear)
     const [productoDirty, setProductoDirty] = useState(prodClear)
     const [editarID, setEditarID] = useState(null)
+    const [resetFoto, setResetFoto] = useState(false)
 
-    // Efecto de montado / desmontado del componente
     useEffect(() => {
-        console.warn('Componente alta (montado)')
+        (async () => {
+            const productos = await servicioProductos.getAll()
 
-            ; (async () => {
-                // obtiendo los productos del recurso remoto
-                const productos = await servicioProductos.getAll()
-
-                // Guardo los productos obtenidos en el recurso local
-                setProductos(productos)
-            })()
+            setProductos(productos)
+        })()
 
         return () => {
             console.warn('Componente alta (desmontado)')
@@ -46,10 +41,8 @@ export function Index() {
         e.preventDefault()
 
         if (editarID) {
-            // actualizamos el producto en el recurso remoto
             const productoActualizado = await servicioProductos.actualizar(editarID, producto)
 
-            // actualizamos el producto en el recurso local
             const productosClon = [...productos]
             const index = productosClon.findIndex(p => p.id == productoActualizado.id)
             productosClon.splice(index, 1, productoActualizado)
@@ -58,28 +51,23 @@ export function Index() {
             setEditarID(null)
         }
         else {
-            // guardamos el producto en el recurso remoto
             const productoGuardado = await servicioProductos.guardar(producto)
 
-            // guardamos el producto en el recurso local
             const productosClon = [...productos]
             productosClon.push(productoGuardado)
             setProductos(productosClon)
+            setResetFoto(true)
         }
 
-        // borro los campos de entrada del formulario
         setProducto(prodClear)
-        // borro el estado dirty de los campos de entrada del formulario
         setProductoDirty(prodClear)
     }
 
     async function borrar(id) {
 
         if (confirm(`¿Está seguro de borrar el producto de id ${id}?`)) {
-            // borramos el producto en el recurso remoto
             const productoEliminado = await servicioProductos.eliminar(id)
 
-            // borramos el producto en el recurso local
             const productosClon = [...productos]
             const index = productosClon.findIndex(p => p.id == productoEliminado.id)
             productosClon.splice(index, 1)
@@ -101,17 +89,35 @@ export function Index() {
         setProducto(producto)
     }
 
-    const nombreNoValido = () => !/^[a-z]{3,10}$/i.test(producto.nombre)
+    const nombreNoValido = () => !/^[a-zA-ZÁÉÍÓÚÑ]{3,50}( [a-zA-ZÁÉÍÓÚÑ]{1,50})*$/i.test(producto.nombre.trim())
+
+    const precioNoValido = () => {
+        const precio = String(producto.precio).trim()
+        if (!/^(\d{1,6})([.,]\d{1,2})?$/.test(precio)) return true
+        return parseFloat(precio.replace(',', '.')) <= 0
+    }
+
+    const marcaNoValido = () => !/^[a-záéíóúñ0-9 .'\-]{2,40}$/i.test(producto.marca)
+    const stockNoValido = () => !/^(0|[1-9]\d{0,2})$/.test(producto.stock)
+    const detallesNoValido = () => {
+        const detalle = (producto.detalles)
+        return detalle.length < 10 || detalle.length > 999
+    }
+    const fotoNoValido = () => producto.foto.trim() === ''
+    const categoriaNoValido = () => producto.categoria.trim() === ''
+
+
+
 
     function formularioNoValido() {
         return (
             nombreNoValido() ||
-            producto.precio == '' ||
-            producto.stock == '' ||
-            producto.marca == '' ||
-            producto.categoria == '' ||
-            producto.detalles == '' ||
-            producto.foto == ''
+            precioNoValido() ||
+            stockNoValido() ||
+            marcaNoValido() ||
+            categoriaNoValido() ||
+            detallesNoValido() ||
+            fotoNoValido()
         )
     }
 
@@ -121,6 +127,13 @@ export function Index() {
         productoClon.foto = urlFoto
         setProducto(productoClon)
     }
+
+    useEffect(() => {
+        if (resetFoto) {
+            setResetFoto(false)
+        }
+    }, [resetFoto])
+
 
     return (
         <div className="alta">
@@ -147,7 +160,9 @@ export function Index() {
                     <input id="precio" type="number" name="precio" value={producto.precio} onChange={
                         e => setProducto({ ...producto, precio: +e.target.value })
                     } />
-                    <div className="error-detail"></div>
+                    <div className="error-detail">
+                        {(precioNoValido() && productoDirty.precio) && <span>Este campo no es válido</span>}
+                    </div>
                 </div>
 
                 {/* <!-- campo stock --> */}
@@ -156,7 +171,9 @@ export function Index() {
                     <input id="stock" type="number" name="stock" value={producto.stock} onChange={
                         e => setProducto({ ...producto, stock: parseInt(e.target.value) })
                     } />
-                    <div className="error-detail"></div>
+                    <div className="error-detail">
+                        {(stockNoValido() && productoDirty.stock) && <span>Este campo no es válido</span>}
+                    </div>
                 </div>
 
                 {/* <!-- campo marca --> */}
@@ -165,17 +182,34 @@ export function Index() {
                     <input id="marca" type="text" name="marca" value={producto.marca} onChange={
                         e => setProducto({ ...producto, marca: e.target.value })
                     } />
-                    <div className="error-detail"></div>
+                    <div className="error-detail">
+                        {(marcaNoValido() && productoDirty.marca) && <span>Este campo no es válido</span>}
+                    </div>
                 </div>
 
                 {/* <!-- campo categoria --> */}
                 <div className="input-group">
-                    <label htmlFor="categoria">categoría</label>
-                    <input id="categoria" type="text" name="categoria" value={producto.categoria} onChange={
-                        e => setProducto({ ...producto, categoria: e.target.value })
-                    } />
-                    <div className="error-detail"></div>
+                    <label htmlFor="categoria">Categoría</label>
+                    <select
+                        id="categoria"
+                        name="categoria"
+                        value={producto.categoria}
+                        onChange={e => setProducto({ ...producto, categoria: e.target.value })}
+                    >
+                        <option value="">Seleccione una categoría</option>
+                        <option value="Fútbol">Fútbol</option>
+                        <option value="Pesas">Pesas</option>
+                        <option value="Boxeo">Boxeo</option>
+                        <option value="Running">Running</option>
+                        <option value="Natación">Natación</option>
+                        <option value="Tenis">Tenis</option>
+                    </select>
+
+                    <div className="error-detail">
+                        {(categoriaNoValido() && productoDirty.categoria) && <span>Este campo no es válido</span>}
+                    </div>
                 </div>
+
 
                 {/* <!-- campo detalles --> */}
                 <div className="input-group">
@@ -183,7 +217,9 @@ export function Index() {
                     <input id="detalles" type="text" name="detalles" value={producto.detalles} onChange={
                         e => setProducto({ ...producto, detalles: e.target.value })
                     } />
-                    <div className="error-detail"></div>
+                    <div className="error-detail">
+                        {(detallesNoValido() && productoDirty.detalles) && <span>Este campo no es válido</span>}
+                    </div>
                 </div>
 
                 {/* <!-- campo foto --> */}
@@ -194,9 +230,12 @@ export function Index() {
                     } />
 
                     {/* Zona de obtención de la foto del producto */}
-                    <ObtenerFoto escribirCampoFoto={escribirCampoFoto} />
+                    <ObtenerFoto escribirCampoFoto={escribirCampoFoto} resetFoto={resetFoto}
+                    />
 
-                    <div className="error-detail"></div>
+                    <div className="error-detail">
+                        {(fotoNoValido() && productoDirty.foto) && <span>Este campo no es válido</span>}
+                    </div>
                 </div>
 
                 {/* <!-- campo envio --> */}

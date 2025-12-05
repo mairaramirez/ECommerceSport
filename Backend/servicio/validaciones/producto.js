@@ -8,12 +8,12 @@ import Joi from 'joi'
 export const validar = producto => {
 
     const productoSchema = Joi.object({
-        nombre: Joi.string().min(3).max(20).required(),
+        nombre: Joi.string().min(3).max(50).required(),
         precio: Joi.number().min(0).max(1000000).required(),
         stock: Joi.number().integer().min(0).max(999).required(),
         marca: Joi.string().required(),
         categoria: Joi.string().required(),
-        detalles: Joi.string().required(),
+        detalles: Joi.string().min(10).max(999).required(),
         foto: Joi.string().required(),
         envio: Joi.boolean().required()    
     })
