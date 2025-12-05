@@ -108,7 +108,7 @@ section:hover {
 .inicio section h3 {
     font-size: 24px;
     margin-bottom: 20px;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .inicio .section-cards-header h1 {
