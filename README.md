@@ -2,6 +2,28 @@
 
 Aplicación Full Stack desarrollada como proyecto final de formación, orientada a la gestión y venta online de productos deportivos.
 
+## Capturas del proyecto
+
+### Home y catálogo de productos
+
+![Home](images/home.png)
+
+### Administración de productos
+
+![Administración](images/lista.png)
+
+### Alta y edición de productos
+
+![Formulario](images/formulario.png)
+
+### Carrito de compras
+
+![Carrito](images/carrito-mp.png)
+
+### Integración Mercado Pago
+
+![Mercado Pago](images/mp.png)
+
 ## Objetivo
 
 Desarrollar una plataforma ecommerce funcional que permita visualizar productos, gestionar compras y procesar pagos mediante Mercado Pago.
